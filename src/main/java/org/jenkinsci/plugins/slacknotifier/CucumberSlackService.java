@@ -29,8 +29,13 @@ public class CucumberSlackService {
 		LOG.info("Cucumber reports are in '" + workspace + "'");
 
 		JsonElement jsonElement = getResultFileAsJsonElement(workspace, json);
-		SlackClient client = new SlackClient(webhookUrl, jenkinsUrl, channel, hideSuccessfulResults);
-		client.postToSlack(jsonElement, build.getParent().getDisplayName(), build.getNumber(), extra);
+		String[] channels = channel.split(",");
+		for(String ch: channels){
+			ch = ch.trim();
+			SlackClient client = new SlackClient(webhookUrl, jenkinsUrl, ch, hideSuccessfulResults);
+			client.postToSlack(jsonElement, build.getParent().getDisplayName(), build.getNumber(), extra);
+		}
+
 	}
 
 	private JsonElement getResultFileAsJsonElement(FilePath workspace, String json) {
