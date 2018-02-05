@@ -8,7 +8,7 @@
 		<relativePath />
 	</parent>
 
-	<artifactId>cucumber-slack-notifier</artifactId>
+	<artifactId>cucumber-slack-notifier-multichannel</artifactId>
 	<version>0.8.4-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 	<url>https://wiki.jenkins-ci.org/display/JENKINS/Cucumber+Slack+Notifier+Plugin</url>
