@@ -75,18 +75,21 @@ public class SlackClient {
 		for (JsonElement featureElement : features) {
 			JsonObject feature = featureElement.getAsJsonObject();
 			JsonArray elements = feature.get("elements").getAsJsonArray();
-			int scenariosTotal = elements.size();
+			int scenariosTotal = 0;
 			int failed = 0;
-			for (JsonElement scenarioElement : elements) {
-				JsonObject scenario = scenarioElement.getAsJsonObject();
-				JsonArray steps = scenario.get("steps").getAsJsonArray();
-				for (JsonElement stepElement : steps) {
-					JsonObject step = stepElement.getAsJsonObject();
-					String result = step.get("result").getAsJsonObject().get("status").getAsString();
-					if (!result.equals("passed")) {
-						failed = failed + 1;
-						failedScenarios = failedScenarios + 1;
-						break;
+			for (JsonElement element : elements) {
+				JsonObject scenario = element.getAsJsonObject();
+				if(scenario.get("type").getAsString().equals("scenario")) {
+					scenariosTotal++;
+					JsonArray steps = scenario.get("steps").getAsJsonArray();
+					for (JsonElement stepElement : steps) {
+						JsonObject step = stepElement.getAsJsonObject();
+						String result = step.get("result").getAsJsonObject().get("status").getAsString();
+						if (!result.equals("passed")) {
+							failed = failed + 1;
+							failedScenarios = failedScenarios + 1;
+							break;
+						}
 					}
 				}
 			}

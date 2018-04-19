@@ -94,7 +94,7 @@ public class CucumberResult {
 	}
 
 	private JsonArray getFields(final String jobName, final int buildNumber, final String jenkinsUrl) {
-		final String hyperLink = getJenkinsHyperlink(jenkinsUrl, jobName, buildNumber) + "cucumber-html-reports/";
+		final String hyperLink = getJenkinsHyperlink(jenkinsUrl, jobName, buildNumber) + "cucumber-html-reports/report-feature_";
 		final JsonArray fields = new JsonArray();
 		fields.add(shortTitle("Features"));
 		fields.add(shortTitle("Pass %"));
