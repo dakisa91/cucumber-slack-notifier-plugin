@@ -32,7 +32,7 @@ public class SlackClientTest {
 		
 		String slackMessage = result.toSlackMessage("test-job", 7, "channel", "http://jenkins:8080/", null);
 		assertNotNull(slackMessage);
-		assertTrue(slackMessage.contains("<http://jenkins:8080/job/test-job/7/cucumber-html-reports/validate_gerrit_home_page-feature.html|validate gerrit home page>"));
+		assertTrue(slackMessage.contains("<http://jenkins:8080/job/test-job/7/cucumber-html-reports/report-feature_validate_gerrit_home_page-feature.html|validate gerrit home page>"));
 	}
 
 	@Test
